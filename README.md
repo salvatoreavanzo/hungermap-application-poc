@@ -17,3 +17,7 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can access the application also in AWS [here](https://main.d273w8pax1ngw.amplifyapp.com).
+
+## App initial design idea
+
+![System design]()

@@ -1,6 +1,7 @@
 "use client"
 import { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, CircleMarker, Popup, useMap } from 'react-leaflet';
+import L from 'leaflet';
 
 
 interface Hazard {
@@ -17,6 +18,37 @@ interface HazardMarker {
     fillColor: string;
     radius: number;
 }
+
+const ShapefileLayer: React.FC = () => {
+    const map = useMap();
+
+    useEffect(() => {
+        // Carica il file GeoJSON localmente
+        fetch('/africa_shape.json')
+            .then((response) => response.json())
+            .then((geojson) => {
+                console.log('GeoJSON caricato correttamente:', geojson);
+
+                // Aggiungi i dati GeoJSON alla mappa con chiavi uniche
+                L.geoJSON(geojson, {
+                    onEachFeature: (feature, layer) => {
+                        const uniqueKey = feature.properties.name + '-' + feature.geometry.coordinates; // Genera una chiave unica
+                        layer.bindPopup(`<strong>${uniqueKey}</strong>`);
+                    },
+                    style: {
+                        color: 'green',
+                        weight: 2,
+                        fillColor: 'blue',
+                        fillOpacity: 0.5,
+                    },
+                }).addTo(map);
+            })
+            .catch((err) => console.error('Errore nel caricamento del GeoJSON:', err));
+    }, [map]);
+
+    return null;
+};
+
 
 const MAPBOX_ACCESS_TOKEN = "pk.eyJ1Ijoic2FsdmF0b3JlYXZhbnpvNzUiLCJhIjoiY20yZnBpdjJ0MGJ5azJscXplbG0xeTMzdyJ9.3WuDPJmpXhT5BsNQYfmqvQ"//process.env.NEXT_PUBLIC_MAPBOXTOKEN;
 
@@ -52,6 +84,9 @@ const Map: React.FC = () => {
                 tileSize={512}
                 zoomOffset={-1}
             />
+
+            <ShapefileLayer />
+
             {hazards && hazards.map((hazard) => (
                 <CircleMarker
                     key={hazard.name}
