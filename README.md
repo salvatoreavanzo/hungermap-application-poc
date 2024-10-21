@@ -18,6 +18,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can access the application also in AWS [here](https://main.d273w8pax1ngw.amplifyapp.com).
 
+![Application screenshot](https://github.com/salvatoreavanzo/hungermap-application-poc/blob/f2a0dbebafd1aed52d9a494598559ef27755a17c/doc/App_Screenshot.png)
+
 ## App initial design idea
 
 ![System design](https://github.com/salvatoreavanzo/hungermap-application-poc/blob/f2a0dbebafd1aed52d9a494598559ef27755a17c/doc/design.png)
