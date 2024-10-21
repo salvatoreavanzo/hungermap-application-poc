@@ -16,7 +16,7 @@ const ShapefileLayer: React.FC = () => {
                 // Try to make unique geojson keys
                 L.geoJSON(geojson, {
                     onEachFeature: (feature, layer) => {
-                        const uniqueKey = feature.properties.name + '-' + feature.geometry.coordinates; // Genera una chiave unica
+                        const uniqueKey = `${feature.properties.name}-${feature.id}`;
                         layer.bindPopup(`<strong>${uniqueKey}</strong>`);
                     },
                     style: {
