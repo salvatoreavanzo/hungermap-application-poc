@@ -20,4 +20,4 @@ You can access the application also in AWS [here](https://main.d273w8pax1ngw.amp
 
 ## App initial design idea
 
-![System design]()
+![System design](https://github.com/salvatoreavanzo/hungermap-application-poc/blob/f2a0dbebafd1aed52d9a494598559ef27755a17c/doc/design.png)
